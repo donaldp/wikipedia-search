@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import ResultsContext from '../app/context/ResultsContext';
 import ResultsComponent from './ResultsComponent';
-import SearchButton from './elements/SearchButton';
+import SearchHandler from './handlers/SearchHandler';
 import { getClassName } from '../app/services/helpers';
 
 const SearchComponent = () => {
-  const [ query, setQuery ] = useState('');
   const { results } = useContext(ResultsContext);
 
   return (
@@ -18,15 +17,7 @@ const SearchComponent = () => {
             alt='Wikipedia'
           />
 
-          <input
-            type='search'
-            placeholder='search wikipedia...'
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            aria-label='Search wikipedia'
-          />
-
-          <SearchButton query={query} />
+          <SearchHandler />
         </div>
 
         <img
