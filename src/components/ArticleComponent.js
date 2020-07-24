@@ -6,7 +6,7 @@ import { getContent } from '../app/services/wikipedia';
 
 const ArticleComponent = (props) => {
   const [ content, setContent ] = useState('');
-  const title = props.match.params.page.replaceAll('_', ' ');
+  const title = props.match.params.page.replaceAll(/_/g, ' ');
 
   /**
    * Fetch wiki content.
