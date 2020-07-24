@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import backIcon from '../resources/icons/back.svg';
-import Iframe from 'react-iframe';
 import { getContent } from '../app/services/wikipedia';
 
 const ArticleComponent = (props) => {
@@ -14,10 +13,7 @@ const ArticleComponent = (props) => {
   const fetchWikiContent = async () => {
     let pageContent = await getContent(props.match.params.page);
 
-    setContent(
-      'data:text/html;charset=utf-8,' +
-      Object.values(pageContent)[0].extract
-    );
+    setContent(Object.values(pageContent)[0].extract);
   }
 
   fetchWikiContent();
@@ -43,8 +39,8 @@ const ArticleComponent = (props) => {
         </nav>
       </header>
 
-      <Iframe
-        url={content}
+      <div
+        dangerouslySetInnerHTML={{ __html: content }}
         className='content'
       />
     </div>
